@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev-frontend\" \"npm run dev-backend\"",
-    "dev-frontend": "vite",
+    "frontend": "vite",
     "dev-backend": "cd backend && npm run start",
-    "devbackend": "cd backend && npm run dev",
+    "backend": "cd backend && npm run dev",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

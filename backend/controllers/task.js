@@ -2,7 +2,7 @@ const Task = require('../models/Task');
 
 exports.createTask = async (req, res) => {
   try {
-    const { title, description, dueDate } = req.body;
+    const { title, description } = req.body;
 
     const userId =  req.user.id ;
 
@@ -23,7 +23,6 @@ exports.createTask = async (req, res) => {
     const newTask = await Task.create({
       title,
       description,
-      dueDate,
       userId,
     });
 
@@ -135,7 +134,8 @@ exports.changeStatus = async (req, res) => {
       });
     }
     
-    const task = await Task.findOne({ _id: taskId, userId });
+    const task = await Task.findOne({ _id: taskId });
+   
 
     if (!task) {
       return res.status(404).json({
@@ -143,7 +143,6 @@ exports.changeStatus = async (req, res) => {
         msg: "Task not found or you are not authorized to update this task.",
       });
     }
-
     task.status = status;
     await task.save();
 
@@ -167,7 +166,7 @@ exports.changeStatus = async (req, res) => {
 exports.updateTask = async (req, res) => {
   try {
     const {taskId} = req.body;
-    const { title, description, dueDate, status } = req.body;
+    const { title, description, status } = req.body;
     const userId = req.user.id ;
 
     if (!userId) {
@@ -176,7 +175,6 @@ exports.updateTask = async (req, res) => {
         msg: "Authentication required. Please log in.",
       });
     }
-    // console.log(taskId , "--" , userId)
 
     const task = await Task.findOne({ _id: taskId, userId });
 
@@ -190,7 +188,6 @@ exports.updateTask = async (req, res) => {
     const updateData = {};
     if (title) updateData.title = title;
     if (description) updateData.description = description;
-    if (dueDate) updateData.dueDate = dueDate;
     if (status) updateData.status = status;
 
     const updatedTask = await Task.findOneAndUpdate(

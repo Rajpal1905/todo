@@ -37,7 +37,6 @@ export const RegisterPage = () => {
     }
 
     try {
-      console.log("hitting 1")
        await signin(name,email,password,confirmPassword);
     } catch (error) {
       console.error("Signup error:", error);

@@ -6,5 +6,9 @@ export const endPoints = {
 };
 
 export const tasks = {
-    ADD_TODO : BASE_URL + '/task/createTask'
+    ADD_TODO : BASE_URL + '/task/create-new-task',
+    SHOW_TODO : BASE_URL + '/task/get-all-tasks',
+    CHANGE_STATUS : BASE_URL + '/task/change-status',
+    UPDATE_TASK : BASE_URL + '/task/update-task',
+    DELETE_TODO : BASE_URL + '/task/delete-task',
 }
