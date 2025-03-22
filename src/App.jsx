@@ -5,6 +5,7 @@ import { LoginPage } from "./pages/LoginPage"
 import { RegisterPage } from "./pages/RegisterPage"
 import { CreateTodoPage } from "./pages/CreateTodoPage"
 import { MyTodoList } from "./pages/MyTodoList"
+import PrivateRoute from "./utils/PrivateRoutes"
 
 
 function App() {
@@ -14,9 +15,12 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path="/" element = {<HomePage/>}/>
+        <Route element = {<PrivateRoute/>}>
         <Route path="/create-todo" element = {<CreateTodoPage/>}/>
-        <Route path="/mytodo" element = {<MyTodoList/>}/>
 
+        <Route path="/mytodo" element = {<MyTodoList/>}/>
+        </Route>  
+     
         <Route path="/login" element = {<LoginPage/>}/>
         <Route path="/register" element = {<RegisterPage/>}/>
       </Routes>
